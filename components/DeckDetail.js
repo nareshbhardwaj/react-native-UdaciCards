@@ -12,7 +12,7 @@ import {
 
 
 
-class DetailedDeck extends React.Component {
+class DeckDetail extends React.Component {
 
   static navigationOptions = ({ navigation }) => {
     return {
@@ -113,4 +113,4 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-  deleteDeck, getDeckDetails })(DetailedDeck);
+  deleteDeck, getDeckDetails })(DeckDetail);

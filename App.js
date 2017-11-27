@@ -3,17 +3,17 @@ import {
   StatusBar,
   View
 } from 'react-native';
-import MainDeck from './components/MainDeck';
-import DetailedDeck from './components/DetailedDeck';
-import AddEntry from './components/AddEntry';
-import Question from './components/Question';
-import MainQuiz from './components/MainQuiz';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { Constants } from 'expo';
+import DeckMain from './components/DeckMain';
+import DeckDetail from './components/DeckDetail';
+import AddEntry from './components/AddEntry';
+import AddQuestion from './components/AddQuestion';
+import QuizMain from './components/QuizMain';
 import reducer from './reducers'
 import { setLocalNotification } from './utils/helper';
 

@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import DeckList from './DeckList';
 
 
-export default class MainDeck extends React.Component {
+export default class DeckMain extends React.Component {
   render() {
     return (
       <View style={styles.container}>

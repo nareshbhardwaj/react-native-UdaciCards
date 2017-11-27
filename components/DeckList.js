@@ -10,7 +10,7 @@ import { Badge, Card } from 'react-native-elements';
 import { fetchDeckDB } from '../actions';
 
 
-class ListDeck extends React.Component {
+class DeckList extends React.Component {
 
   componentDidMount() {
     this.props.fetchDeckDB();
@@ -76,5 +76,5 @@ const mapStateToProps = state => {
   return { DBdata };
 };
 
-export default connect(mapStateToProps, { fetchDeckDB })(ListDeck);
+export default connect(mapStateToProps, { fetchDeckDB })(DeckList);
 

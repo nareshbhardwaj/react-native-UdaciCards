@@ -13,7 +13,7 @@ import {
 import { saveDeckTitle } from '../utils/api';
 
 
-export default class AddDeck extends React.Component {
+export default class AddEntry extends React.Component {
   state = {
     titleText: '',
     errorMessage: false

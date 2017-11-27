@@ -12,7 +12,7 @@ import {
 } from '../utils/helper';
 
 
-class MainQuiz extends React.Component {
+class QuizMain extends React.Component {
   state = {
     showQuestion: true,
     questions: this.shuffleQuestions(),
@@ -174,4 +174,4 @@ const styles = {
 };
 
 
-export default MainQuiz;
+export default QuizMain;
