@@ -1,23 +1,112 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  StatusBar,
+  View
+} from 'react-native';
+import MainDeck from './components/MainDeck';
+import DetailedDeck from './components/DetailedDeck';
+import AddEntry from './components/AddEntry';
+import Question from './components/Question';
+import MainQuiz from './components/MainQuiz';
+import { TabNavigator, StackNavigator } from 'react-navigation';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import ReduxThunk from 'redux-thunk';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
+import { Constants } from 'expo';
+import reducer from './reducers'
+import { setLocalNotification } from './utils/helper';
+
+
+function CustomStatusBar ({ backgroundColor, ...props }) {
+  return (
+    <View style={{backgroundColor, height: Constants.statusBarHeight }}>
+      <StatusBar
+        translucent
+        backgroundColor={backgroundColor}
+        {...props}
+      />
+    </View>
+  );
+}
+
+
+const Tabs = TabNavigator({
+  Decks: {
+    screen: DeckMain,
+    navigationOptions: {
+      tabBarLabel: 'Decks',
+      tabBarIcon: ({ tintColor }) => <Ionicons name="ios-home" size={30} color={tintColor} />
+    }
+  },
+  AddEntry: {
+    screen: AddEntry,
+    navigationOptions: {
+      tabBarLabel: 'Add Deck',
+      tabBarIcon: ({ tintColor }) => <FontAwesome name="plus-square" size={30} color={tintColor} />
+    }
+  }
+});
+
+const MainNavigator =  StackNavigator({
+  Home: {
+    screen: Tabs,
+    navigationOptions: {
+      title: "Flash Cards",
+      headerTintColor: "blue",
+      headerStyle: {
+        backgroundColor: "white"
+      }
+    }
+  },
+  DeckDetail: {
+    screen: DeckDetail,
+    navigationOptions: {
+      headerTintColor: "blue",
+      headerStyle: {
+        backgroundColor: "white"
+
+      }
+    }
+  },
+  AddQuestion: {
+    screen: AddQuestion,
+    navigationOptions: {
+      headerTintColor: "blue",
+      headerStyle: {
+        backgroundColor: "white"
+
+      }
+    }
+  },
+  QuizMain: {
+    screen: QuizMain,
+    navigationOptions: {
+      headerTintColor: "blue",
+      headerStyle: {
+        backgroundColor: "white"
+      }
+    }
+  }
+});
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
+
   render() {
+    const store = createStore(reducer, {}, applyMiddleware(ReduxThunk));
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+      <Provider store={store}>
+        <View style={{ flex: 1 }}>
+          <CustomStatusBar
+            backgroundColor="white"
+            barStyle="light-content"
+          />
+          <MainNavigator />
+        </View>
+      </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

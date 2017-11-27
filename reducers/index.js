@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import DeckReducer from './DeckReducer';
-import DeckDetailReducer from './DeckDetailReducer';
+import DeckReducer from './Deck';
+import DeckDetailReducer from './DeckDetail';
 
 export default combineReducers({
-  decks: DeckReducer,
-  deckDetail: DeckDetailReducer
+  decks: Deck,
+  deckDetail: DeckDetail
 });
