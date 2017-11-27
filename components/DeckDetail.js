@@ -55,7 +55,7 @@ class DeckDetail extends React.Component {
               title='Add Card'
               onPress={() => {
                   this.props.navigation.navigate(
-                    'AddQuestion',
+                    'Question',
                     {
                       navTitle: this.props.title,
                       title: this.props.title
@@ -73,7 +73,7 @@ class DeckDetail extends React.Component {
               title='Start Quiz'
               onPress={() => {
                   this.props.navigation.navigate(
-                    'QuizMain',
+                    'Quiz',
                     {
                       navTitle: this.props.title,
                       questions: this.props.questions }

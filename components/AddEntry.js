@@ -49,7 +49,7 @@ export default class AddEntry extends React.Component {
         }}
         behavior="padding"
       >
-        <Card title="Title for your new deck?" >
+        <Card title="Title for new deck?" >
           <FormInput
             onChangeText={titleText => this.setState({ titleText })}
             value={this.state.titleText}

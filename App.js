@@ -7,15 +7,15 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
+import reducer from './reducers'
+import { setLocalNotification } from './utils/helper';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { Constants } from 'expo';
 import DeckMain from './components/DeckMain';
+import Quiz from './components/Quiz';
 import DeckDetail from './components/DeckDetail';
+import Question from './components/Question';
 import AddEntry from './components/AddEntry';
-import AddQuestion from './components/AddQuestion';
-import QuizMain from './components/QuizMain';
-import reducer from './reducers'
-import { setLocalNotification } from './utils/helper';
 
 
 function CustomStatusBar ({ backgroundColor, ...props }) {
@@ -52,7 +52,26 @@ const MainNavigator =  StackNavigator({
   Home: {
     screen: Tabs,
     navigationOptions: {
-      title: "Flash Cards",
+      title: "Udacity Flash Card Game",
+      headerTintColor: "blue",
+      headerStyle: {
+        backgroundColor: "white"
+      }
+    }
+  },
+  Question: {
+    screen: Question,
+    navigationOptions: {
+      headerTintColor: "blue",
+      headerStyle: {
+        backgroundColor: "white"
+
+      }
+    }
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
       headerTintColor: "blue",
       headerStyle: {
         backgroundColor: "white"
@@ -66,25 +85,6 @@ const MainNavigator =  StackNavigator({
       headerStyle: {
         backgroundColor: "white"
 
-      }
-    }
-  },
-  AddQuestion: {
-    screen: AddQuestion,
-    navigationOptions: {
-      headerTintColor: "blue",
-      headerStyle: {
-        backgroundColor: "white"
-
-      }
-    }
-  },
-  QuizMain: {
-    screen: QuizMain,
-    navigationOptions: {
-      headerTintColor: "blue",
-      headerStyle: {
-        backgroundColor: "white"
       }
     }
   }

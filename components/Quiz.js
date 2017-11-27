@@ -2,17 +2,17 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import {
+  clearLocalNotification,
+  setLocalNotification
+} from '../utils/helper';
+import {
   Badge,
   Button,
   Card
 } from 'react-native-elements';
-import {
-  clearLocalNotification,
-  setLocalNotification
-} from '../utils/helper';
 
 
-class QuizMain extends React.Component {
+class Quiz extends React.Component {
   state = {
     showQuestion: true,
     questions: this.shuffleQuestions(),
@@ -26,28 +26,16 @@ class QuizMain extends React.Component {
     }
   };
 
-  resetNotification() {
-    clearLocalNotification()
-      .then(setLocalNotification);
-  }
-
-  resetQuiz() {
-    this.setState(() =>{
-      return {
-        showQuestion: true,
-          questions: this.shuffleQuestions(),
-        currentQuestion: 0,
-        correctAnswers: 0
-      }
-    });
-    this.resetNotification()
-  }
-
   backToDeck() {
     const backAction = NavigationActions.back();
     this.resetQuiz();
     this.props.navigation.dispatch(backAction);
     this.resetNotification()
+  }
+
+  resetNotification() {
+    clearLocalNotification()
+      .then(setLocalNotification);
   }
 
   shuffleQuestions() {
@@ -63,6 +51,18 @@ class QuizMain extends React.Component {
     } while (i >= 0);
 
     return questions;
+  }
+
+  resetQuiz() {
+    this.setState(() =>{
+      return {
+        showQuestion: true,
+          questions: this.shuffleQuestions(),
+        currentQuestion: 0,
+        correctAnswers: 0
+      }
+    });
+    this.resetNotification()
   }
 
   renderCard() {
@@ -174,4 +174,4 @@ const styles = {
 };
 
 
-export default QuizMain;
+export default Quiz;
